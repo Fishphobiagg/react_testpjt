@@ -7,7 +7,7 @@ import { useState } from 'react';
 function App() {
 
   let post = '강남 우동 맛집';
-  let [제목, a] = useState(['개쩌는 옷', '2년동안 안팔리는데 잘나가는척 하는 옷', '주문 들어오면 부랴부랴 만들 옷']);
+  let [제목, a] = useState(['안쩌는 옷', '너무 구려서안팔리는데 잘나가는척 하는 옷', '그냥 주문 들어오면 부랴부랴 만들 옷']);
   let [좋아요, 좋아요업] = useState(0);
 
   return (
@@ -15,6 +15,11 @@ function App() {
       <div className="black-nav">
         <h4 style={{fontSize : '16px'}}>ReactBlog</h4>
       </div>
+      <button onClick={()=>{
+        let sorting = [...제목];
+        sorting.sort();
+        a(sorting)
+      }}>상품 정렬</button>
       <button onClick={()=>{
 
         let arr = [1, 2, 3];
