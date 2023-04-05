@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
@@ -5,16 +7,26 @@ import { useState } from 'react';
 function App() {
 
   let post = '강남 우동 맛집';
-  let [제목, a] = useState(['개쩌는 옷', '2년동안 안팔리는데 잘나가는척 하는 옷', '주문 들어오면 부랴부랴 만들 옷'])
-
+  let [제목, a] = useState(['개쩌는 옷', '2년동안 안팔리는데 잘나가는척 하는 옷', '주문 들어오면 부랴부랴 만들 옷']);
+  let [좋아요, 좋아요업] = useState(0);
 
   return (
     <div className="App">
       <div className="black-nav">
-        <h4 style={{color : 'red', fontSize : '16px'}}>블로그임</h4>
+        <h4 style={{fontSize : '16px'}}>ReactBlog</h4>
       </div>
+      <button onClick={()=>{
+
+        let arr = [1, 2, 3];
+
+        let copy = [...제목];
+        copy[0] = '여자코트 추천'
+        a(copy);
+      }}>
+        마술하나 보여줄까
+      </button>
       <div className='list'>
-        <h4>{제목[0]}</h4>
+        <h4>{제목[0]} <span onClick={()=>{ 좋아요업(좋아요+1) }}>❤</span> {좋아요} </h4>
         <p>2월 17일 발행</p>
       </div>
       <div className='list'>
