@@ -9,7 +9,7 @@ function App() {
   let post = '강남 우동 맛집';
   let [제목, a] = useState(['안쩌는 옷', '너무 구려서안팔리는데 잘나가는척 하는 옷', '그냥 주문 들어오면 부랴부랴 만들 옷']);
   let [좋아요, 좋아요업] = useState(0);
-
+  let [modal, setModal] = useState(true);
   return (
     <div className="App">
       <div className="black-nav">
@@ -42,8 +42,22 @@ function App() {
         <h4>{제목[2]}</h4>
         <p>2월 17일 발행</p>
       </div>
+      {
+        modal == true? <modal/> : null
+      }
     </div>
   );
 }
+
+function Modal(){
+  return (
+    <div className="modal">
+    <h4>제목</h4>
+    <p>날짜</p>
+    <p>상세내용</p>
+  </div>
+  )
+}
+
 
 export default App;
