@@ -6,10 +6,9 @@ import { useState } from 'react';
 
 function App() {
 
-  let post = '강남 우동 맛집';
   let [제목, a] = useState(['안쩌는 옷', '너무 구려서안팔리는데 잘나가는척 하는 옷', '그냥 주문 들어오면 부랴부랴 만들 옷']);
   let [좋아요, 좋아요업] = useState(0);
-  let [modal, setModal] = useState(true);
+  let [modal, setModal] = useState(false);
   return (
     <div className="App">
       <div className="black-nav">
@@ -39,11 +38,15 @@ function App() {
         <p>2월 17일 발행</p>
       </div>
       <div className='list'>
-        <h4>{제목[2]}</h4>
+        <h4 onClick={()=>{
+          let status = 0
+        modal == true? status=false: status=true
+        setModal(status)
+        }}>{제목[2]}</h4>
         <p>2월 17일 발행</p>
       </div>
       {
-        modal == true? <modal/> : null
+        modal == true? <Modal/> : null
       }
     </div>
   );
