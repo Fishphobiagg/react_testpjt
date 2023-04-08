@@ -7,7 +7,7 @@ import { useState } from 'react';
 function App() {
 
   let [제목, a] = useState(['안쩌는 옷', '너무 구려서안팔리는데 잘나가는척 하는 옷', '그냥 주문 들어오면 부랴부랴 만들 옷']);
-  let [좋아요, 좋아요업] = useState(0);
+  let [좋아요, 좋아요업] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   return (
     <div className="App">
@@ -29,7 +29,7 @@ function App() {
       }}>
         마술하나 보여줄까
       </button>
-      <div className='list'>
+      {/* <div className='list'>
         <h4>{제목[0]} <span onClick={()=>{ 좋아요업(좋아요+1) }}>❤</span> {좋아요} </h4>
         <p>2월 17일 발행</p>
       </div>
@@ -44,10 +44,22 @@ function App() {
         setModal(status)
         }}>{제목[2]}</h4>
         <p>2월 17일 발행</p>
-      </div>
-      {
-        modal == true? <Modal/> : null
-      }
+      </div> */}
+        {
+          제목.map(function(a, i){
+            return(
+            <div className='list' key={i}>
+              <h4>{제목[i]}
+               <span onClick={()=>{
+                let a = [...좋아요]
+                a[i] = a[i]+1
+                좋아요업(a)
+              }}>❤</span> {좋아요[i]}</h4>
+              <p>11월 26일 내 생일</p> 
+            </div>)
+          })
+
+        }
     </div>
   );
 }
