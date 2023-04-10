@@ -36,3 +36,11 @@ div {
   background: #eee;
   text-align: left;
 }
+
+.detail{
+  margin-bottom: 20px;
+}
+
+.buy {
+  background: blanchedalmond;
+}

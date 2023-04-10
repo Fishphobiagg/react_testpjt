@@ -8,61 +8,50 @@ function App() {
 
   let [제목, a] = useState(['안쩌는 옷', '너무 구려서안팔리는데 잘나가는척 하는 옷', '그냥 주문 들어오면 부랴부랴 만들 옷']);
   let [좋아요, 좋아요업] = useState([0, 0, 0]);
-  let [modal, setModal] = useState([false, false, false]) 
+  let [modal, setModal] = useState(false);
+  let [title, setTitle] = useState(0);
+  let [input, inputChange] = useState('');
+
+
   return (
     <div className="App">
       <div className="black-nav">
         <h4 style={{fontSize : '16px'}}>ReactBlog</h4>
       </div>
-      <button onClick={()=>{
-        let sorting = [...제목];
-        sorting.sort();
-        a(sorting)
-      }}>상품 정렬</button>
-      <button onClick={()=>{
+      {
+      제목.map(function(a, i){
+        return(
+          <div className="list">
+            <h4>{a}
+            <span onClick={()=>{
+              let a = [...좋아요]
+              a[i] = a[i] + 1
+              좋아요업(a)
+            }}>👍 {좋아요[i]}</span>
+            </h4>
+            <p>옷 이름 : </p>
+            <p>옷 가격 : </p>
+            <button className='detail' onClick={()=>{setTitle(i);setModal(!modal)
+            }}>상세정보</button>
+          </div>
+        )
+      })}
+      <input onChange={(e)=>{inputChange(e.target.value); console.log(input)}}/>
 
-        let arr = [1, 2, 3];
-
-        let copy = [...제목];
-        copy[0] = '여자코트 추천'
-        a(copy);
-      }}>
-        마술하나 보여줄까
-      </button>
-        {
-          제목.map(function(a, i){
-            return(
-            <div className='list' key={i}>
-              <h4 onClick={()=>{
-                let change = [...modal]
-                change[i] = !change[i]
-                console.log(change[i], !change[i])
-                setModal(change)
-              }}>{제목[i]}
-               <span onClick={()=>{
-                let a = [...좋아요]
-                a[i] = a[i]+1
-                좋아요업(a)
-              }}>❤</span> {좋아요[i]}</h4>
-              <p>11월 26일 내 생일</p>
-              {
-              modal[i] == true? <Modal 제목={제목[i]} /> : null
-            }
-            </div>
-            )
-          })
-        }
+      {
+        modal == true? <Modal 제목={제목} title={title}/>:null
+      }
     </div>
+    
   );
 }
-
 function Modal(props){
-  return (
+  return(
     <div className="modal">
-    <h4>{props.제목}</h4>
-    <p>날짜</p>
-    <p>상세내용</p>
-    <button>글수정</button>
+    <h4>{props.제목[props.title]}</h4>
+    <p>옷 이름 :</p>
+    <p>옷 가격 :</p>
+    <button className='buy'>구매하기</button>
   </div>
   )
 }
