@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 function App() {
 
-  let [제목, a] = useState(['안쩌는 옷', '너무 구려서안팔리는데 잘나가는척 하는 옷', '그냥 주문 들어오면 부랴부랴 만들 옷']);
+  let [제목, titleChange] = useState(['안쩌는 옷', '너무 구려서안팔리는데 잘나가는척 하는 옷', '그냥 주문 들어오면 부랴부랴 만들 옷']);
   let [좋아요, 좋아요업] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
@@ -33,11 +33,20 @@ function App() {
             <p>옷 가격 : </p>
             <button className='detail' onClick={()=>{setTitle(i);setModal(!modal)
             }}>상세정보</button>
+            <button className='delete' onClick={()=>{
+              let b = [...제목]
+              b.splice(i, 1)
+              titleChange(b)
+            }}>삭제하기</button>
           </div>
         )
       })}
-      <input onChange={(e)=>{inputChange(e.target.value); console.log(input)}}/>
-
+      <input onChange={(e)=>{inputChange(e.target.value)}}/>
+      <button onClick={()=>{
+        let c = [...제목]
+        c.push(input)
+        titleChange(c)
+      }}>글쓰기</button>
       {
         modal == true? <Modal 제목={제목} title={title}/>:null
       }
