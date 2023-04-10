@@ -60,7 +60,7 @@ function App() {
         modal == true? <Modal 제목={제목} title={title}/>:null
       }
     </div>
-    
+
   );
 }
 function Modal(props){
@@ -71,6 +71,7 @@ function Modal(props){
     <p>옷 가격 :</p>
     <button className='buy'>구매하기</button>
   </div>
+
   )
 }
 
