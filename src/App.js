@@ -11,7 +11,7 @@ function App() {
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
   let [input, inputChange] = useState('');
-
+  let today = new Date();
 
   return (
     <div className="App">
@@ -34,18 +34,27 @@ function App() {
             <button className='detail' onClick={()=>{setTitle(i);setModal(!modal)
             }}>상세정보</button>
             <button className='delete' onClick={()=>{
-              let b = [...제목]
+              let b = [...제목];
+              let e = [...좋아요];
               b.splice(i, 1)
+              e.splice(i, 1)
               titleChange(b)
+              좋아요업(e)
             }}>삭제하기</button>
           </div>
         )
       })}
       <input onChange={(e)=>{inputChange(e.target.value)}}/>
       <button onClick={()=>{
+        if (input.length !== 0)
+        {
         let c = [...제목]
+        let ddabong = [...좋아요]
+        ddabong.push(0)
         c.push(input)
+        좋아요업(ddabong)
         titleChange(c)
+        }
       }}>글쓰기</button>
       {
         modal == true? <Modal 제목={제목} title={title}/>:null
